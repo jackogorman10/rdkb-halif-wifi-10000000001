@@ -187,10 +187,40 @@ typedef struct _wifi_radioTrafficStatsMeasure
 
 //---------------------------------------------------------------------------------------------------
 
+/**
+ * @brief Retrieve legacy TWT parameters for a station.
+ * @param[in] sta Station identifier; encoding and required buffer length need
+ * vendor clarification.
+ * @param[out] twt_params Caller-owned parameter storage.
+ * @return Implementation status; exact codes are not specified here.
+ * @deprecated Retained for legacy consumers; confirm product support.
+ */
 INT wifi_getTWTParams(CHAR *sta, wifi_twt_params_t *twt_params);
+/**
+ * @brief Set legacy BSS-color enablement for an AP.
+ * @param[in] apIndex AP index.
+ * @param[in] enabled Requested enablement.
+ * @return Implementation status; exact codes are not specified here.
+ * @deprecated Retained for legacy consumers.
+ */
 INT wifi_setBSSColorEnabled (INT apIndex, BOOL enabled);
+/**
+ * @brief Query legacy BSS-color enablement for an AP.
+ * @param[in] apIndex AP index.
+ * @param[out] enabled Caller-owned Boolean storage.
+ * @return Implementation status; exact codes are not specified here.
+ * @deprecated Retained for legacy consumers.
+ */
 INT wifi_getBSSColorEnabled(INT apIndex, BOOL *enabled);
 
+/**
+ * @brief Retrieve legacy channel statistics for a radio.
+ * @param[in] radioIndex Radio index.
+ * @param[out] outputChannelStats2 Caller-owned statistics storage. Required
+ * element count and allocation capacity need vendor clarification.
+ * @return Implementation status; exact codes are not specified here.
+ * @deprecated Prefer the product-supported current statistics interface.
+ */
 INT wifi_getRadioChannelStats2(INT radioIndex, wifi_channelStats2_t *outputChannelStats2);
 
 /* wifi_getHalVersion() function */
