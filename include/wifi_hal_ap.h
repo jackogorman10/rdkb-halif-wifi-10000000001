@@ -1788,6 +1788,12 @@ void wifi_apStatusCode_callback_register(wifi_apStatusCode_callback callback_pro
 */
 void wifi_ap_stamode_callback_register(wifi_stamode_callback callback_proc);
 
+/**
+ * @brief Register the Wi-Fi handshake notification callback.
+ * @param[in] callback_proc Callback with the declared wifi_handshake_callback signature.
+ * @note This function returns no status. Callback lifetime, replacement,
+ * unregistration, and execution-thread guarantees require the vendor contract.
+ */
 void wifi_handshake_callback_register(wifi_handshake_callback callback_proc);
 
 /**
@@ -3341,8 +3347,27 @@ typedef struct
 } __attribute__((packed)) wifi_ap_capabilities_t;
 /** @} */  //END OF GROUP WIFI_HAL_TYPES
 
+/**
+ * @brief Obtain the SSID associated with a VAP description.
+ * @param[in] vap VAP description to inspect.
+ * @return SSID pointer. Null handling, ownership, and lifetime are not specified
+ * by this declaration; do not free or retain it without implementation agreement.
+ */
 const char *get_vap_ssid(wifi_vap_info_t *vap);
+/**
+ * @brief Obtain the bridge name associated with a VAP description.
+ * @param[in] vap VAP description to inspect.
+ * @return Bridge-name pointer. Null handling, ownership, and lifetime require
+ * implementation agreement.
+ */
 const char *get_vap_bridge_name(wifi_vap_info_t *vap);
+/**
+ * @brief Access the security representation associated with a VAP.
+ * @param[in] vap VAP description.
+ * @param[in,out] sec Security storage; exact direction and population semantics
+ * require implementation agreement because the legacy declaration is unqualified.
+ * @return Unsigned implementation result. It is not documented as RETURN_OK/ERR.
+ */
 unsigned int get_vap_security_mode(wifi_vap_info_t *vap, wifi_vap_security_t *sec);
 
 /**
